@@ -451,6 +451,10 @@ summary.lm(model.1)</code></pre>
 ## Residual standard error: 1.226 on 145 degrees of freedom
 ## Multiple R-squared:  0.4706, Adjusted R-squared:  0.467 
 ## F-statistic: 128.9 on 1 and 145 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>New=data.frame(GRIP=94, ARM=88)
+predict.lm(model.1,New,interval=&quot;prediction&quot;)</code></pre>
+<pre><code>##         fit       lwr      upr
+## 1 0.7063836 -1.726209 3.138977</code></pre>
 </div>
 <div id="plot-scatterplot-1" class="section level3">
 <h3>Plot scatterplot</h3>
@@ -476,6 +480,9 @@ summary.lm(model.2)</code></pre>
 ## Residual standard error: 1.295 on 145 degrees of freedom
 ## Multiple R-squared:  0.4094, Adjusted R-squared:  0.4053 
 ## F-statistic: 100.5 on 1 and 145 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>predict.lm(model.2,New,interval=&quot;prediction&quot;)</code></pre>
+<pre><code>##          fit       lwr      upr
+## 1 -0.5361543 -3.107961 2.035652</code></pre>
 <pre class="r"><code>model.3 &lt;- lm(SIMS~ARM+GRIP,data=dataF)
 summary.lm(model.3)</code></pre>
 <pre><code>## 
@@ -497,7 +504,13 @@ summary.lm(model.3)</code></pre>
 ## Residual standard error: 1.144 on 144 degrees of freedom
 ## Multiple R-squared:  0.5422, Adjusted R-squared:  0.5358 
 ## F-statistic: 85.26 on 2 and 144 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>predict.lm(model.3,New,interval=&quot;prediction&quot;)</code></pre>
+<pre><code>##         fit       lwr      upr
+## 1 0.1496476 -2.132373 2.431668</code></pre>
 </div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
 </div>
 
 
