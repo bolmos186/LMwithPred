@@ -13,6 +13,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is the linear model with prediction problem. Predict strength scores using date from the following website
 
+$H_A$ There is a difference in the models, one is better than the other.
+
+$H_0$ There is no difference in the models, one is not better than the other. 
+
 ```{r}
 dataF <- read.csv(file="http://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="",header=TRUE)  
 ```
@@ -25,7 +29,7 @@ require(knitr)
 require(ggplot)
 ```
 
-### Plot scatterplot
+### Model 1
 
 ```{r}
 plot(SIMS~ARM,data=dataF)
@@ -35,7 +39,7 @@ plot(SIMS~ARM,data=dataF)
 basicNN <- ggplot(dataF,aes(y=SIMS,x=ARM))
 ```
 
-##Now add in scatterplot
+
 
 ```{r}
 basicNN + geom_point() + geom_smooth(method=lm)
@@ -48,15 +52,19 @@ New=data.frame(GRIP=94, ARM=88)
 predict.lm(model.1,New,interval="prediction")
 ```
 
-### Plot scatterplot
+## Model 2
 
 ```{r}
 plot(SIMS~GRIP,data=dataF)
 ```
 
+```{r}
+basicNN <- ggplot(dataF,aes(y=SIMS,x=GRIP))
+```
 
-
-
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+```
 
 ```{r}
 model.2 <- lm(SIMS~GRIP,data=dataF)
@@ -64,14 +72,20 @@ summary.lm(model.2)
 predict.lm(model.2,New,interval="prediction")
 ``` 
 
+## Model 3
+
 ```{r}
 model.3 <- lm(SIMS~ARM+GRIP,data=dataF)
 summary.lm(model.3)
 predict.lm(model.3,New,interval="prediction")
 ``` 
 
+## Compare
 
+```{r}
+anova(model.1,model.3)
+```
 
 ## Conclusion
 
-
+As seen above, the P value is less than 1 which means we reject the null hypothesis. We conclude that there is a difference between the models and one of them is bigger than the other two. We concluded that based on the adjusted R-squared which was higher for model 1 than the other two models. 
